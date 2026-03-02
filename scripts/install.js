@@ -1,9 +1,14 @@
 const assert = require("assert");
 const fs = require("fs-extra");
 const path = require("path");
-const { getAddonName, getDotaPath } = require("./utils");
+const { getAddonName, getDotaPath, isWsl } = require("./utils");
 
 (async () => {
+    if (isWsl()) {
+        console.log("WSL detected. Skipping install.js. Use `npm run wsl-link` for the initial linking setup.");
+        return;
+    }
+
     const dotaPath = await getDotaPath();
     if (dotaPath === undefined) {
         console.log("No Dota 2 installation found. Addon linking is skipped.");
@@ -32,7 +37,7 @@ const { getAddonName, getDotaPath } = require("./utils");
         fs.symlinkSync(targetPath, sourcePath, "junction");
         console.log(`Linked ${sourcePath} <==> ${targetPath}`);
     }
-})().catch(error => {
+})().catch((error) => {
     console.error(error);
     process.exit(1);
 });

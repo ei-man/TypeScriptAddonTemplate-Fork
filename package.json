@@ -1,15 +1,19 @@
 {
-    "name": "",
+    "name": "test_typescript_addon",
     "private": true,
     "scripts": {
         "postinstall": "node scripts/install.js",
-        "launch": "node scripts/launch.js",
         "build": "run-p build:*",
         "build:panorama": "tsc --project src/panorama/tsconfig.json",
         "build:vscripts": "tstl --project src/vscripts/tsconfig.json",
         "dev": "run-p dev:*",
         "dev:panorama": "tsc --project src/panorama/tsconfig.json --watch",
-        "dev:vscripts": "tstl --project src/vscripts/tsconfig.json --watch"
+        "dev:vscripts": "tstl --project src/vscripts/tsconfig.json --watch",
+        "dev-poll": "run-p dev-poll:*",
+        "dev-poll:panorama": "tsc --project content/panorama/layout/custom_game/tsconfig.json --watch --watchDirectory fixedpollinginterval --watchFile fixedpollinginterval",
+        "dev-poll:vscripts": "tstl --project game/scripts/vscripts/tsconfig.json --watch --watchDirectory fixedpollinginterval --watchFile fixedpollinginterval",
+        "launch": "node scripts/launch.js",
+        "wsl-link": "node scripts/wsl-link.js"
     },
     "devDependencies": {
         "@moddota/dota-lua-types": "^4.34.1",

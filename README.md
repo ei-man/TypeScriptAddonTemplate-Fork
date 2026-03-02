@@ -37,3 +37,10 @@ After that you can press `Ctrl+Shift+B` in VSCode or run `npm run dev` command i
 ## Continuous Integration
 
 This template includes a [GitHub Actions](https://github.com/features/actions) [workflow](.github/workflows/ci.yml) that builds your custom game on every commit and fails when there are type errors.
+
+## WSL
+Recommended WSL setup:
+- Keep the repository under WSL filesystem. Keeping it under windows file system and mounting that to WSL will break some things (e.g. npm run dev (`tsc --watch`) doesn't work as file notifications from windows filesystem for do not reach processes running in WSL)
+- Use `npm run wsl-link` to move the addon folders into the Dota install and bind-mount them back into the repo. This avoids UNC symlink issues and keeps Git tracking real directories.
+- If you get file permission changes in git diff then consider telling git to ignore those - `git config core.filemode false`
+
