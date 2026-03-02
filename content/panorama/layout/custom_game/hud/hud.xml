@@ -1,13 +1,13 @@
 <root>
     <scripts>
         <!-- Included JS script files go here -->
-        <include src="file://{resources}/scripts/custom_game/hud.js" />
+        <include src="file://{resources}/layout/custom_game/hud/hud.js" />
     </scripts>
 
     <styles>
         <!-- Included css style files go here -->
         <include src="s2r://panorama/styles/dotastyles.css" />
-        <include src="file://{resources}/styles/custom_game/hud.css" />
+        <include src="file://{resources}/layout/custom_game/hud/hud.css" />
     </styles>
 
     <snippets>

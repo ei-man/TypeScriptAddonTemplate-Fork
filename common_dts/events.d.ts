@@ -8,7 +8,7 @@
  * Panorama side your event handlers will have to handle NetworkedData<EventType>, changes are:
  *   - Booleans are turned to 0 | 1
  *   - Arrays are automatically translated to objects when sending them as event. You have
- *     to change them back into arrays yourself! See 'toArray()' in src/panorama/hud.ts
+ *     to change them back into arrays yourself! See 'toArray()' in content/panorama/layout/custom_game/hud.ts
  */
 
 // To declare an event for use, add it to this table with the type of its data

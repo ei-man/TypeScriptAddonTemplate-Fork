@@ -1,6 +1,6 @@
 node_modules
 
-/content/panorama/scripts/custom_game/**/*.js
+/content/panorama/layout/custom_game/**/*.js
 /game/scripts/vscripts/**/*.lua
 
 # Dota 2 stuff

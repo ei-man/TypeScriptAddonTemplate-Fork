@@ -21,9 +21,9 @@ After that you can press `Ctrl+Shift+B` in VSCode or run `npm run dev` command i
 
 ## Contents:
 
-* **[src/common]:** TypeScript .d.ts type declaration files with types that can be shared between Panorama and VScripts
-* **[src/vscripts]:** TypeScript code for Dota addon (Lua) vscripts. Compiles lua to game/scripts/vscripts.
-* **[src/panorama]:** TypeScript code for panorama UI. Compiles js to content/panorama/scripts/custom_game
+* **[common_dts]:** TypeScript .d.ts type declaration files with types that can be shared between Panorama and VScripts
+* **[game/scripts/vscripts]:** TypeScript code for Dota addon (Lua) vscripts. Compiles lua to game/scripts/vscripts.
+* **[content/panorama/layout/custom_game]:** TypeScript code for panorama UI. Compiles js to content/panorama/scripts/custom_game
 
 --
 
@@ -43,4 +43,3 @@ Recommended WSL setup:
 - Keep the repository under WSL filesystem. Keeping it under windows file system and mounting that to WSL will break some things (e.g. npm run dev (`tsc --watch`) doesn't work as file notifications from windows filesystem for do not reach processes running in WSL)
 - Use `npm run wsl-link` to move the addon folders into the Dota install and bind-mount them back into the repo. This avoids UNC symlink issues and keeps Git tracking real directories.
 - If you get file permission changes in git diff then consider telling git to ignore those - `git config core.filemode false`
-
