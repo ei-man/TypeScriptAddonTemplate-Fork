@@ -13,9 +13,12 @@
         "dev-poll:panorama": "tsc --project content/panorama/layout/custom_game/tsconfig.json --watch --watchDirectory fixedpollinginterval --watchFile fixedpollinginterval",
         "dev-poll:vscripts": "tstl --project game/scripts/vscripts/tsconfig.json --watch --watchDirectory fixedpollinginterval --watchFile fixedpollinginterval",
         "launch": "node scripts/launch.js",
-        "wsl-link": "node scripts/wsl-link.js"
+        "wsl-link": "node scripts/wsl-link.js",
+        "lint": "biome check --write",
+        "lint:no-fix": "biome check"
     },
     "devDependencies": {
+        "@biomejs/biome": "^2.4.4",
         "@moddota/dota-lua-types": "^4.34.1",
         "@moddota/find-steam-app": "^1.1.0",
         "@moddota/panorama-types": "^1.30.0",

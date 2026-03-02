@@ -7,7 +7,7 @@ Object.assign(getfenv(), {
     Precache: GameMode.Precache,
 });
 
-if (GameRules.Addon !== undefined) {
+if (GameRules.Addon != null) {
     // This code is only run after script_reload, not at startup
     GameRules.Addon.Reload();
 }

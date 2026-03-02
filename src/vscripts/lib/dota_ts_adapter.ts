@@ -13,7 +13,7 @@ export class BaseModifier {
         ability?: CDOTABaseAbility,
         modifierTable?: object,
     ): InstanceType<T> {
-        return target.AddNewModifier(caster, ability, this.name, modifierTable) as any;
+        return target.AddNewModifier(caster, ability, BaseModifier.name, modifierTable) as any;
     }
 }
 
@@ -32,12 +32,13 @@ setmetatable(BaseItem.prototype, { __index: CDOTA_Item_Lua ?? C_DOTA_Item_Lua })
 setmetatable(BaseModifier.prototype, { __index: CDOTA_Modifier_Lua ?? CDOTA_Modifier_Lua });
 
 export const registerAbility = (name?: string) => (ability: new () => CDOTA_Ability_Lua | CDOTA_Item_Lua, context: ClassDecoratorContext) => {
-    if (name !== undefined) {
-        // @ts-ignore
+    if (name != null) {
+        // @ts-expect-error
         ability.name = name;
-    } if (context.name) {
-        name = context.name;   
-    }else {
+    }
+    if (context.name) {
+        name = context.name;
+    } else {
         throw "Unable to determine name of this ability class!";
     }
 
@@ -57,12 +58,13 @@ export const registerAbility = (name?: string) => (ability: new () => CDOTA_Abil
 };
 
 export const registerModifier = (name?: string) => (modifier: new () => CDOTA_Modifier_Lua, context: ClassDecoratorContext) => {
-    if (name !== undefined) {
-        // @ts-ignore
+    if (name != null) {
+        // @ts-expect-error
         modifier.name = name;
-    } if (context.name) {
-        name = context.name;   
-    }else {
+    }
+    if (context.name) {
+        name = context.name;
+    } else {
         throw "Unable to determine name of this modifier class!";
     }
 
@@ -76,7 +78,7 @@ export const registerModifier = (name?: string) => (modifier: new () => CDOTA_Mo
     const originalOnCreated = (env[name] as CDOTA_Modifier_Lua).OnCreated;
     env[name].OnCreated = function (parameters: any) {
         this.____constructor();
-        if (originalOnCreated !== undefined) {
+        if (originalOnCreated != null) {
             originalOnCreated.call(this, parameters);
         }
     };
@@ -122,8 +124,8 @@ function getFileScope(): [any, string] {
     let level = 1;
     while (true) {
         const info = debug.getinfo(level, "S");
-        if (info && info.what === "main") {
-            return [getfenv(level), info.source!];
+        if (info && info.what === "main" && info.source) {
+            return [getfenv(level), info.source];
         }
 
         level += 1;

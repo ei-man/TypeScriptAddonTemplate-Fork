@@ -6,7 +6,7 @@ module.exports.getAddonName = () => {
     if (!/^[a-z][\d_a-z]+$/.test(packageJson.name)) {
         throw new Error(
             "Addon name may consist only of lowercase characters, digits, and underscores " +
-            "and should start with a letter. Edit `name` field in `package.json` file.",
+                "and should start with a letter. Edit `name` field in `package.json` file.",
         );
     }
 

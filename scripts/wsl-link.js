@@ -38,11 +38,7 @@ const ensureFstabEntry = (line) => {
     return true;
 };
 
-const fstabEscape = (value) =>
-    String(value)
-        .replace(/\\/g, "\\134")
-        .replace(/\t/g, "\\011")
-        .replace(/ /g, "\\040");
+const fstabEscape = (value) => String(value).replace(/\\/g, "\\134").replace(/\t/g, "\\011").replace(/ /g, "\\040");
 
 const isMounted = (mountPoint) => {
     const contents = fs.readFileSync("/proc/self/mountinfo", "utf8");

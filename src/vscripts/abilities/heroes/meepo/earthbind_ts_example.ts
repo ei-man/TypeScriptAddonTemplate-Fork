@@ -89,8 +89,12 @@ export class meepo_earthbind_ts_example extends BaseAbility {
             unit.EmitSound("Hero_Meepo.Earthbind.Target");
         }
 
-        ParticleManager.DestroyParticle(this.particle!, false);
-        ParticleManager.ReleaseParticleIndex(this.particle!);
+        const particle = this.particle;
+        if (particle != null) {
+            ParticleManager.DestroyParticle(particle, false);
+            ParticleManager.ReleaseParticleIndex(particle);
+            this.particle = undefined;
+        }
 
         return true;
     }

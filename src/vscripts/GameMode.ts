@@ -26,24 +26,28 @@ export class GameMode {
 
         // Register event listeners for dota engine events
         ListenToGameEvent("game_rules_state_change", () => this.OnStateChange(), undefined);
-        ListenToGameEvent("npc_spawned", event => this.OnNpcSpawned(event), undefined);
+        ListenToGameEvent("npc_spawned", (event) => this.OnNpcSpawned(event), undefined);
 
         // Register event listeners for events from the UI
         CustomGameEventManager.RegisterListener("ui_panel_closed", (_, data) => {
             print(`Player ${data.PlayerID} has closed their UI panel.`);
 
             // Respond by sending back an example event
-            const player = PlayerResource.GetPlayer(data.PlayerID)!;
+            const player = PlayerResource.GetPlayer(data.PlayerID);
+            if (!player) {
+                return;
+            }
             CustomGameEventManager.Send_ServerToPlayer(player, "example_event", {
                 myNumber: 42,
                 myBoolean: true,
                 myString: "Hello!",
-                myArrayOfNumbers: [1.414, 2.718, 3.142]
+                myArrayOfNumbers: [Math.SQRT2, Math.E, Math.PI],
             });
 
             // Also apply the panic modifier to the sending player's hero
             const hero = player.GetAssignedHero();
-            if (hero != undefined) { // Hero didn't spawn yet or dead
+            if (hero != null) {
+                // Hero didn't spawn yet or dead
                 hero.AddNewModifier(hero, undefined, modifier_panic.name, { duration: 5 });
             }
         });
@@ -61,7 +65,7 @@ export class GameMode {
         const state = GameRules.State_Get();
 
         // Add 4 bots to lobby in tools
-        if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
+        if (IsInToolsMode() && state === GameState.CUSTOM_GAME_SETUP) {
             for (let i = 0; i < 4; i++) {
                 Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
             }
@@ -70,9 +74,7 @@ export class GameMode {
         if (state === GameState.CUSTOM_GAME_SETUP) {
             // Automatically skip setup in tools
             if (IsInToolsMode()) {
-                Timers.CreateTimer(3, () => {
-                    GameRules.FinishCustomGameSetup();
-                });
+                Timers.CreateTimer(3, () => GameRules.FinishCustomGameSetup());
             }
         }
 
