@@ -15,13 +15,15 @@
         "launch": "node scripts/launch.js",
         "wsl-link": "node scripts/wsl-link.js",
         "lint": "biome check --write",
-        "lint:no-fix": "biome check"
+        "lint:no-fix": "biome check",
+        "generate-dota-types": "node scripts/generate-dota-types.js",
+        "generate-dota-types:skip-dump": "node scripts/generate-dota-types.js --skip-dump"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.4",
-        "@moddota/dota-lua-types": "^4.34.1",
+        "@moddota/dota-lua-types": "file:dota_types/lua",
         "@moddota/find-steam-app": "^1.1.0",
-        "@moddota/panorama-types": "^1.30.0",
+        "@moddota/panorama-types": "file:dota_types/panorama",
         "fs-extra": "^9.0.0",
         "npm-run-all": "^4.1.5",
         "typescript": "5.5.2",

@@ -1,4 +1,5 @@
 node_modules
+/vendor/
 
 /content/panorama/layout/custom_game/**/*.js
 /game/scripts/vscripts/**/*.lua

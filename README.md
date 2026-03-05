@@ -32,7 +32,23 @@ After that you can press `Ctrl+Shift+B` in VSCode or run `npm run dev` command i
 
 --
 
+* **[dota_types/*]:** Generated TypeScript type declarations for Dota 2 Lua and Panorama APIs (git-tracked)
+* **[vendor/*]:** Git submodules ([dota-data](https://github.com/ModDota/dota-data), [TypeScriptDeclarations](https://github.com/ModDota/TypeScriptDeclarations)) used for type generation (gitignored)
 * **[scripts/*]:** Repository installation scripts
+
+## Regenerating Dota 2 Type Declarations
+
+The `dota_types/` directory contains pre-generated type declarations that are checked into git, so you don't need to regenerate them for normal development. If you want to update them after a Dota 2 patch:
+
+```bash
+# Full regeneration (launches Dota 2 to capture a fresh API dump)
+npm run generate-dota-types
+
+# Rebuild from existing dump data (no Dota launch, useful for testing build changes)
+npm run generate-dota-types:skip-dump
+```
+
+This initializes the `vendor/` submodules, builds the type generation pipeline, copies the output to `dota_types/`, and cleans up the submodule working trees so only `dota_types/` has changes to commit.
 
 ## Continuous Integration
 

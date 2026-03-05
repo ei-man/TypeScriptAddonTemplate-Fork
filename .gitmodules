@@ -1,0 +1,6 @@
+[submodule "vendor/dota-data"]
+	path = vendor/dota-data
+	url = https://github.com/ei-man/dota-data.git
+[submodule "vendor/TypeScriptDeclarations"]
+	path = vendor/TypeScriptDeclarations
+	url = https://github.com/ModDota/TypeScriptDeclarations

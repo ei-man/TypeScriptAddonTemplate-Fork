@@ -3,8 +3,8 @@
         "rootDir": ".",
         "target": "esnext",
         "lib": ["esnext"],
-        "types": ["@moddota/dota-lua-types/normalized"],
-        "plugins": [{ "transform": "@moddota/dota-lua-types/transformer" }],
+        "types": ["../../../dota_types/lua/normalized"],
+        "plugins": [{ "transform": "../../../dota_types/lua/transformer" }],
         "moduleResolution": "node",
         "strict": true
     },

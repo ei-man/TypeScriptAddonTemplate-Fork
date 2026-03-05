@@ -3,7 +3,7 @@
         "rootDir": ".",
         "target": "es2017",
         "lib": ["es2017"],
-        "types": ["@moddota/panorama-types"],
+        "types": ["../../../../dota_types/panorama"],
         "moduleResolution": "node",
         "strict": true
     },
